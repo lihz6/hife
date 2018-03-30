@@ -1,0 +1,31 @@
+{
+  "name": "hife",
+  "version": "1.0.4",
+  "description": "HugeInfo front end.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngolin/hife.git"
+  },
+  "keywords": [
+    "HugeInfo"
+  ],
+  "author": "Li Hongzhang@HugeInfo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ngolin/hife/issues"
+  },
+  "homepage": "https://github.com/ngolin/hife#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
