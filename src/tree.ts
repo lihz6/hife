@@ -1,5 +1,7 @@
 
-export default (seed: any) => walk(seed).join(' ');
+export default function tree(seed: any) {
+  return walk(seed).join(' ');
+}
 
 function walk(seed: any): string[] {
   if (seed && seed !== true || seed === 0) {

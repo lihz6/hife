@@ -1,12 +1,14 @@
 require('es6-promise').polyfill();
-const fetch = require('isomorphic-fetch');
+const f = require('isomorphic-fetch');
 
-export default (domain: string) => (path: string, data: any) => fetch(
-  urlJoin(domain, uniqePath(path)), formdata(data)
-).then((res: Response) => {
-  if (res.ok) return res.json();
-  throw res.statusText;
-});
+export default function fetch(domain: string) {
+  return (path: string, data: any) => f(
+    urlJoin(domain, uniqePath(path)), formdata(data)
+  ).then((res: Response) => {
+    if (res.ok) return res.json();
+    throw res.statusText;
+  });
+}
 
 function formdata(data: any) {
   const options: any = {

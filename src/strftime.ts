@@ -1,4 +1,4 @@
-type DateTimeFormater = (dt: {
+export type Formater = (dt: {
   year: number;
   month: number;
   date: number;
@@ -7,7 +7,7 @@ type DateTimeFormater = (dt: {
   second: number;
 }) => string;
 
-export default (time: number, format: DateTimeFormater = defaultFormat) => {
+export default function strftime(time: number, format: Formater = defaultFormat) {
   const newDate = new Date(time);
   const date = {
     year: newDate.getFullYear(),
@@ -20,4 +20,4 @@ export default (time: number, format: DateTimeFormater = defaultFormat) => {
   return format(date);
 };
 
-const defaultFormat: DateTimeFormater = ({ year, month, date, hour, minute }) => `${year}年${month}月${date}日 ${hour}:${minute}`;
+const defaultFormat: Formater = ({ year, month, date, hour, minute }) => `${year}年${month}月${date}日 ${hour}:${minute}`;
