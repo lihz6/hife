@@ -1,0 +1,7 @@
+tsconfig.json
+node_modules/
+.gitignore
+README.md
+.vscode/
+LICENSE
+src/
