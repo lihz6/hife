@@ -1,26 +1,28 @@
-export default seed => walk(seed).join(' ');
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = (seed) => walk(seed).join(' ');
 function walk(seed) {
-  if (seed && seed !== true || seed === 0) {
-    if (Array.isArray(seed)) {
-      return seed.map(walk).reduce((a, b) => a.concat(b), []);
-    }
-    const type = typeof seed;
-    if (type === 'string' || type === 'number') {
-      return [seed];
-    } else if (type === 'object') {
-      const array = [];
-      for (const key in seed) {
-        const val = seed[key];
-        if (val || val === 0) {
-          array.push(key);
-          walk(val).forEach(sub => {
-            array.push(key + '-' + sub);
-          });
+    if (seed && seed !== true || seed === 0) {
+        if (Array.isArray(seed)) {
+            return seed.map(walk).reduce((a, b) => a.concat(b), []);
         }
-      }
-      return array;
+        const type = typeof seed;
+        if (type === 'string' || type === 'number') {
+            return [seed];
+        }
+        else if (type === 'object') {
+            const array = [];
+            for (const key in seed) {
+                const val = seed[key];
+                if (val || val === 0) {
+                    array.push(key);
+                    walk(val).forEach(sub => {
+                        array.push(key + '-' + sub);
+                    });
+                }
+            }
+            return array;
+        }
     }
-  }
-  return [];
+    return [];
 }
