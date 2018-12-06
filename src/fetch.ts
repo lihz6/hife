@@ -1,9 +1,6 @@
-require('es6-promise').polyfill();
-const f = require('isomorphic-fetch');
-
-export default function (domain: string){
-  return (path: string, data: any) => f(
-    urlJoin(domain, uniqePath(path)), formdata(data)
+export default function (domain: string) {
+  return (path: string, data: any) => fetch(
+    urlJoin(domain, path), formdata(data)
   ).then((res: Response) => {
     if (res.ok) return res.json();
     throw res.statusText;
@@ -25,11 +22,6 @@ function formdata(data: any) {
     };
   }
   return options;
-}
-
-function uniqePath(path: string) {
-  if (path.indexOf('?') >= 0) return path + `&timestamp=${Date.now()}`;
-  return path + `?timestamp=${Date.now()}`;
 }
 
 function urlJoin(base: string, path: string) {
