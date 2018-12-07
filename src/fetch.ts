@@ -1,5 +1,5 @@
-export default function (domain: string) {
-  return (path: string, data: any) => fetch(
+export default function a(domain: string) {
+  return (path: string, data?: any) => fetch(
     urlJoin(domain, path), formdata(data)
   ).then((res: Response) => {
     if (res.ok) return res.json();
@@ -7,7 +7,7 @@ export default function (domain: string) {
   });
 }
 
-function formdata(data: any) {
+function formdata(data?: any) {
   const options: any = {
     credentials: 'include',
     method: 'GET',
