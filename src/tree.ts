@@ -1,7 +1,7 @@
 export default (seed: any) => walk(seed).join(' ');
 
 function walk(seed: any): string[] {
-  if (seed && seed !== true || seed === 0) {
+  if ((seed && seed !== true) || seed === 0) {
     if (Array.isArray(seed)) {
       return seed.map(walk).reduce((a, b) => a.concat(b), []);
     }
