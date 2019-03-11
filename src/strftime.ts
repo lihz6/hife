@@ -34,11 +34,11 @@ export const longFormat: Formater<string> = (
   pad
 ) => `${year}年${month}月${date}日 ${pad(hour)}:${pad(minute)}`;
 
-function getAccordToday({ getFullYear, getMonth, getDate, getHours }: Date) {
-  const _year = getFullYear();
-  const _month = getMonth() + 1;
-  const _date = getDate();
-  const _hour = getHours();
+function getAccordToday(date: Date) {
+  const _year = date.getFullYear();
+  const _month = date.getMonth() + 1;
+  const _date = date.getDate();
+  const _hour = date.getHours();
   return (year: number, month: number, date: number) => {
     if (_hour > 20) {
       accordToday = getAccordToday(new Date());
