@@ -20,10 +20,14 @@ function formdata(data: any) {
 
   if (data) {
     options.method = 'POST';
-    options.body = JSON.stringify(data);
-    options.headers = {
-      'Content-Type': 'application/json'
-    };
+    if (data instanceof FormData) {
+      options.body = data;
+    } else {
+      options.body = JSON.stringify(data);
+      options.headers = {
+        'Content-Type': 'application/json'
+      };
+    }
   }
   return options;
 }
