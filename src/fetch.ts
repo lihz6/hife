@@ -11,6 +11,14 @@ export default function(domain: string) {
     );
 }
 
+export function toFormData(data: any) {
+  const form = new FormData();
+  for (const key in data) {
+    form.append(key, data[key]);
+  }
+  return form;
+}
+
 function formdata(data: any) {
   const options: any = {
     credentials: 'include',
