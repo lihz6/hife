@@ -1,9 +1,9 @@
 require('es6-promise').polyfill();
 const f = require('isomorphic-fetch');
 
-export default function(domain: string) {
-  return <T = any>(path: string, data?: any): Promise<T> =>
-    f(urlJoin(domain, uniqePath(path)), formdata(data)).then(
+export default function (domain: string) {
+  return <T = any>(path: string, data?: any, headers?: any): Promise<T> =>
+    f(urlJoin(domain, uniqePath(path)), formdata(data, headers)).then(
       (res: Response) => {
         if (res.ok) return res.json() as Promise<T>;
         throw res.statusText;
@@ -19,13 +19,15 @@ export function toFormData(data: any) {
   return form;
 }
 
-function formdata(data: any) {
+function formdata(data: any, headers: any) {
   const options: any = {
     credentials: 'include',
     method: 'GET',
     mode: 'cors'
   };
-
+  if (headers) {
+    options.headers = headers;
+  }
   if (data) {
     options.method = 'POST';
     if (data instanceof FormData) {
@@ -33,7 +35,8 @@ function formdata(data: any) {
     } else {
       options.body = JSON.stringify(data);
       options.headers = {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...headers
       };
     }
   }
